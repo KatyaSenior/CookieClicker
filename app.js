@@ -8,7 +8,7 @@ const cpsSpan = document.getElementById("cpsSpan");
 
 const stats = {
   cookieCount: 0,
-  cps: 1,
+  cps: 0,
 };
 
 const storageStats = JSON.parse(localStorage.getItem("stats"));
@@ -41,6 +41,9 @@ function resetCookies() {
   stats.cps = 1;
   updatePage();
   updateStorage();
+  if ((resetButton.textContent = "Start")) {
+    resetButton.textContent = "Reset";
+  }
 }
 
 function updatePage() {
