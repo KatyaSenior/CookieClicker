@@ -2,6 +2,7 @@ console.log("Hello world");
 
 const cookieButton = document.getElementById("cookieButton");
 const upgradeButton = document.getElementById("upgradeButton");
+const resetButton = document.getElementById("resetButton");
 const cookiesSpan = document.getElementById("cookiesSpan");
 const cpsSpan = document.getElementById("cpsSpan");
 
@@ -25,8 +26,19 @@ function buyCookie() {
 }
 
 function buyUpgrade() {
-  stats.cps++;
-  stats.cookieCount -= 10;
+  if (stats.cookieCount - 10 < 0) {
+    console.log("nope");
+  } else {
+    stats.cps++;
+    stats.cookieCount -= 10;
+    updatePage();
+    updateStorage();
+  }
+}
+
+function resetCookies() {
+  stats.cookieCount = 0;
+  stats.cps = 1;
   updatePage();
   updateStorage();
 }
@@ -42,6 +54,7 @@ function updateStorage() {
 
 cookieButton.addEventListener("click", buyCookie);
 upgradeButton.addEventListener("click", buyUpgrade);
+resetButton.addEventListener("click", resetCookies);
 
 setInterval(function () {
   stats.cookieCount += stats.cps;
