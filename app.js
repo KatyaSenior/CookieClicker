@@ -8,7 +8,7 @@ const cpsSpan = document.getElementById("cpsSpan");
 
 const stats = {
   cookieCount: 0,
-  cps: 0,
+  cps: 1,
 };
 
 const storageStats = JSON.parse(localStorage.getItem("stats"));
