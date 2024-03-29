@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <script src="app.js" defer></script>
-    <title>Document</title>
+    <title>Katya's Kookie Klicker</title>
   </head>
   <body>
-    <button id="cookieButton">Get Cookie</button>
-    <button id="upgradeButton">Get Upgrade</button>
-    <button id="pauseButton">Pause</button>
-    <button id="resetButton">Start</button>
-    <p>Total cookies:<span id="cookiesSpan">0</span></p>
-    <p>Cookies Per Second:<span id="cpsSpan">0</span></p>
+    <div class="container">
+      <div class="buttonsBox">
+        <button id="cookieButton">Get Cookie</button>
+        <button id="upgradeButton">Get Upgrade</button>
+        <button id="pauseButton">Pause</button>
+        <button id="resetButton">Start</button>
+      </div>
+      <div class="stats">
+        <p>Total cookies:<span id="cookiesSpan">0</span></p>
+        <p>Cookies Per Second:<span id="cpsSpan">0</span></p>
+      </div>
+    </div>
   </body>
 </html>
