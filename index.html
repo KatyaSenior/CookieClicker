@@ -8,17 +8,18 @@
     <title>Katya's Kookie Klicker</title>
   </head>
   <body>
-    <div class="container">
+    <div class="stats">
+      <div id="cookieCountId">
+        Total cookies:<span id="cookiesSpan">0</span>
+      </div>
+      <div id="cpsId">Cookies Per Second:<span id="cpsSpan">0</span></div>
       <div class="buttonsBox">
-        <button id="cookieButton">Get Cookie</button>
-        <button id="upgradeButton">Get Upgrade</button>
-        <button id="pauseButton">Pause</button>
+        <img src="./assets/cookie.png" id="cookieButton" alt="a piture of a giant cookie">Click the cookie!</img>
+        <div class="upgrades">
+        <button class="upgradeButton" id="grandmaButton">Buy Grandma</button>
+        <button class="upgradeButton" id="ovenButton">Buy oven</button>
+        </div>
+       <!--<button id="pauseButton">Pause</button>-->
         <button id="resetButton">Start</button>
-      </div>
-      <div class="stats">
-        <p>Total cookies:<span id="cookiesSpan">0</span></p>
-        <p>Cookies Per Second:<span id="cpsSpan">0</span></p>
-      </div>
-    </div>
   </body>
 </html>

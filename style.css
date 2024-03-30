@@ -1,3 +1,22 @@
-.container {
-  grid-template-columns: 1fr 1fr;
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#cookieCountId {
+  font-size: 4rem;
+}
+
+#cpsId {
+  font-size: 1.25rem;
+}
+
+.buttonsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cookieButton {
+  max-height: 300px;
 }
