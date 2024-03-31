@@ -20,3 +20,10 @@
 #cookieButton {
   max-height: 300px;
 }
+
+.upgrades {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}

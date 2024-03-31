@@ -3,16 +3,21 @@ console.log("Hello world");
 const cookieButton = document.getElementById("cookieButton");
 const grandmaButton = document.getElementById("grandmaButton");
 const ovenButton = document.getElementById("ovenButton");
-/*const pauseButton = document.getElementById("pauseButton");*/
 const resetButton = document.getElementById("resetButton");
 const cookiesSpan = document.getElementById("cookiesSpan");
 const cpsSpan = document.getElementById("cpsSpan");
 
-/*let gameStatus = "unpaused";*/
+setInterval(function () {
+  stats.cookieCount += stats.cps;
+  updatePage();
+  updateStorage();
+}, 1000);
 
 const stats = {
   cookieCount: 0,
   cps: 0,
+  gUpgrade: 10,
+  oUpgrade: 100,
 };
 
 const storageStats = JSON.parse(localStorage.getItem("stats"));
@@ -30,62 +35,41 @@ function buyCookie() {
 }
 
 function buyGrandma() {
-  if (stats.cookieCount - 10 < 0) {
+  if (stats.cookieCount - stats.gUpgrade < 0) {
     console.log("nope");
   } else {
     stats.cps++;
-    stats.cookieCount -= 10;
+    stats.cookieCount -= stats.gUpgrade;
+    stats.gUpgrade += 2;
     updatePage();
     updateStorage();
   }
 }
 
 function buyOven() {
-  if (stats.cookieCount - 100 < 0) {
+  if (stats.cookieCount - stats.oUpgrade < 0) {
     console.log("nope");
   } else {
     stats.cps += 10;
-    stats.cookieCount -= 100;
+    stats.cookieCount -= stats.oUpgrade;
+    stats.gUpgrade += 20;
     updatePage();
     updateStorage();
   }
 }
 
-/*
-BROKEN PAUSE BUTTON
-function pauseGame() {
-  console.log("pauseButtonTest");
-  if ((gameStatus = "unpaused")) {
-    pauseButton.textContent = "Play";
-    setInterval(function () {
-      stats.cookieCount += stats.cps;
-      updatePage();
-      updateStorage();
-    }, 0);
-  }
-  if ((gameStatus = "paused")) {
-    pauseButton.textContent = "Pause";
-    setInterval(function () {
-      stats.cookieCount += stats.cps;
-      updatePage();
-      updateStorage();
-    }, 2000);
-  }
-}*/
-
 function resetCookies() {
   stats.cookieCount = 0;
-  stats.cps = 1;
+  stats.cps = 0;
+  gUpgrade = 10;
+  oUpgrade = 100;
   updatePage();
   updateStorage();
-  if ((resetButton.textContent = "Start")) {
-    resetButton.textContent = "Reset";
-    setInterval(function () {
-      stats.cookieCount += stats.cps;
-      updatePage();
-      updateStorage();
-    }, 2000);
-  }
+  setInterval(function () {
+    stats.cookieCount += stats.cps;
+    updatePage();
+    updateStorage();
+  }, 1000);
 }
 
 function updatePage() {
@@ -100,5 +84,4 @@ function updateStorage() {
 cookieButton.addEventListener("click", buyCookie);
 grandmaButton.addEventListener("click", buyGrandma);
 ovenButton.addEventListener("click", buyOven);
-/*pauseButton.addEventListener("click", pauseGame);*/
 resetButton.addEventListener("click", resetCookies);
