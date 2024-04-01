@@ -10,6 +10,7 @@ const gUpgradeNumberSpan = document.getElementById("gUpgradeNumberSpan");
 const gUpgradeCostSpan = document.getElementById("gUpgradeCostSpan");
 const oUpgradeNumberSpan = document.getElementById("oUpgradeNumberSpan");
 const oUpgradeCostSpan = document.getElementById("oUpgradeCostSpan");
+/*const buyCookieAudio = document.*/
 
 setInterval(function () {
   stats.cookieCount += stats.cps;
@@ -40,6 +41,7 @@ if (storageStats !== null) {
 
 function buyCookie() {
   stats.cookieCount++;
+
   updatePage();
   updateStorage();
 }
@@ -95,6 +97,11 @@ function resetCookies() {
   }, 1000);
 }
 
+function buyCookieAudio() {
+  var buyCookieAudio = document.getElementById("buyCookieAudio");
+  buyCookieAudio.play();
+}
+
 function updatePage() {
   cookiesSpan.textContent = stats.cookieCount;
   cpsSpan.textContent = stats.cps;
@@ -108,7 +115,7 @@ function updateStorage() {
   localStorage.setItem("stats", JSON.stringify(stats));
 }
 
-cookieButton.addEventListener("click", buyCookie);
+cookieButton.addEventListener("click", buyCookie, buyCookieAudio);
 grandmaButton.addEventListener("click", buyGrandma);
 ovenButton.addEventListener("click", buyOven);
 resetButton.addEventListener("click", resetCookies);
