@@ -6,6 +6,10 @@ const ovenButton = document.getElementById("ovenButton");
 const resetButton = document.getElementById("resetButton");
 const cookiesSpan = document.getElementById("cookiesSpan");
 const cpsSpan = document.getElementById("cpsSpan");
+const gUpgradeNumberSpan = document.getElementById("gUpgradeNumberSpan");
+const gUpgradeCostSpan = document.getElementById("gUpgradeCostSpan");
+const oUpgradeNumberSpan = document.getElementById("oUpgradeNumberSpan");
+const oUpgradeCostSpan = document.getElementById("oUpgradeCostSpan");
 
 setInterval(function () {
   stats.cookieCount += stats.cps;
@@ -16,8 +20,10 @@ setInterval(function () {
 const stats = {
   cookieCount: 0,
   cps: 0,
-  gUpgrade: 10,
-  oUpgrade: 100,
+  gUpgradeCost: 10,
+  gUpgradeNumber: 0,
+  oUpgradeCost: 100,
+  oUpgradeNumber: 0,
 };
 
 const storageStats = JSON.parse(localStorage.getItem("stats"));
@@ -25,6 +31,10 @@ const storageStats = JSON.parse(localStorage.getItem("stats"));
 if (storageStats !== null) {
   stats.cookieCount = storageStats.cookieCount;
   stats.cps = storageStats.cps;
+  stats.gUpgradeCost = storageStats.gUpgradeCost;
+  stats.gUpgradeNumber = storageStats.gUpgradeNumber;
+  stats.oUpgradeCost = storageStats.oUpgradeCost;
+  stats.oUpgradeNumber = storageStats.oUpgradeNumber;
   updatePage();
 }
 
@@ -35,24 +45,34 @@ function buyCookie() {
 }
 
 function buyGrandma() {
-  if (stats.cookieCount - stats.gUpgrade < 0) {
+  if (stats.cookieCount - stats.gUpgradeCost < 0) {
     console.log("nope");
+    document.getElementById("errorMessage").style.visibility = "visible";
+    setTimeout(() => {
+      document.getElementById("errorMessage").style.visibility = "hidden";
+    }, 5000);
   } else {
     stats.cps++;
-    stats.cookieCount -= stats.gUpgrade;
-    stats.gUpgrade += 2;
+    stats.cookieCount -= stats.gUpgradeCost;
+    stats.gUpgradeCost += 2;
+    stats.gUpgradeNumber++;
     updatePage();
     updateStorage();
   }
 }
 
 function buyOven() {
-  if (stats.cookieCount - stats.oUpgrade < 0) {
+  if (stats.cookieCount - stats.oUpgradeCost < 0) {
     console.log("nope");
+    document.getElementById("errorMessage").style.visibility = "visible";
+    setTimeout(() => {
+      document.getElementById("errorMessage").style.visibility = "hidden";
+    }, 5000);
   } else {
     stats.cps += 10;
-    stats.cookieCount -= stats.oUpgrade;
-    stats.gUpgrade += 20;
+    stats.cookieCount -= stats.oUpgradeCost;
+    stats.oUpgradeCost += 20;
+    stats.oUpgradeNumber++;
     updatePage();
     updateStorage();
   }
@@ -61,8 +81,11 @@ function buyOven() {
 function resetCookies() {
   stats.cookieCount = 0;
   stats.cps = 0;
-  gUpgrade = 10;
-  oUpgrade = 100;
+  gUpgradeCost = 10;
+  gUpgradeNumber = 0;
+  oUpgradeCost = 100;
+  oUpgradeNumber = 0;
+  document.getElementById("errorMessage").style.visibility = "hidden";
   updatePage();
   updateStorage();
   setInterval(function () {
@@ -75,6 +98,10 @@ function resetCookies() {
 function updatePage() {
   cookiesSpan.textContent = stats.cookieCount;
   cpsSpan.textContent = stats.cps;
+  gUpgradeNumberSpan.textContent = stats.gUpgradeNumber;
+  gUpgradeCostSpan.textContent = stats.gUpgradeCost;
+  oUpgradeNumberSpan.textContent = stats.oUpgradeNumber;
+  oUpgradeCostSpan.textContent = stats.oUpgradeCost;
 }
 
 function updateStorage() {
